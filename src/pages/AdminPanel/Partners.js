@@ -93,7 +93,7 @@ const Partners = () => {
                     <th className="px-4 py-2 border-b font-semibold">Action</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="text-center">
                   {inactivePartner.length > 0 ? (
                     inactivePartner.map((data) => (
                       <tr key={data.id} className="border-b">

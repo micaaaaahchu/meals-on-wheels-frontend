@@ -50,7 +50,7 @@ const Partners = () => {
             setPartner(item)
             return item
           })
-          setPartner(resp.data)
+        setPartner(resp.data)
       })
       .catch((err) => console.log(err))
 
@@ -64,7 +64,7 @@ const Partners = () => {
             setInactivePartner(item)
             return item
           })
-          setInactivePartner(resp.data)
+        setInactivePartner(resp.data)
       })
       .catch((err) => console.log(err))
   }, [token, msg])
@@ -72,95 +72,96 @@ const Partners = () => {
   if (!isAdmin) {
     return <ForbiddenPage />;
   }
-  
+
   return (
     <Layout>
-    <div className="flex min-h-screen mr-5">
-    <Sidebar />
-    <div className="mx-auto max-w-5xl">
-  <h1 className="text-center py-5 font-bold">Manage Partner</h1>
-  <div className="mb-3">
-      <h1>Partnership Request</h1>
-  </div>
-    <div className="bg-white rounded shadow overflow-x-auto">
-      <table className="min-w-full">
-        <thead>
-          <tr className="bg-gray-200 text-gray-800">
-            <th className="py-2 px-4">Company Name</th>
-            <th className="py-2 px-4">Image</th>
-            <th className="py-2 px-4">Address</th>
-            <th className="py-2 px-4">Email</th>
-            <th className="py-2 px-4">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-  {inactivePartner.length > 0 ? (
-    inactivePartner.map((data) => (
-      <tr key={data.id} className="border-b">
-        <td className="py-2 px-4">{data.name}</td>
-        <td className="py-2 px-4">
-          <img
-            className="h-16 w-16 object-contain"
-            src={`data:image/jpeg;base64,${data?.profilePicture}`}
-            alt=""
-          />
-        </td>
-        <td className="py-2 px-4">{data.address}</td>
-        <td className="py-2 px-4">{data.email}</td>
-        <td className="py-2 px-4">
-          <button
-            className="button font-bold"
-            onClick={() => handleAccept(data.id)}
-          >
-            Accept Partnership
-          </button>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="5" className="py-2 px-4">
-        No partnership requests found.
-      </td>
-    </tr>
-  )}
-</tbody>
-      </table>
-    </div>
-  </div>
-  <div id="registered-partner" className="py-5">
-  <h1> Registered Partner</h1> 
-    <div className="bg-white rounded shadow overflow-x-auto">
-      <table className="min-w-full">
-        <thead>
-          <tr className="bg-gray-200 text-gray-800">
-            <th className="py-2 px-4">Company Name</th>
-            <th className="py-2 px-4">Image</th>
-            <th className="py-2 px-4">Address</th>
-            <th className="py-2 px-4">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {partner.map((data) => (
-            <tr key={data.id} className="border-b">
-              <td className="py-2 px-4">{data.name}</td>
-              <td className="py-2 px-4">
-                <img
-                  className="h-16 w-16 object-contain"
-                  src={`data:image/jpeg;base64,${data?.profilePicture}`}
-                  alt=""
-                />
-              </td>
-              <td className="py-2 px-4">{data.address}</td>
-              <td className="py-2 px-4">{data.email}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="flex min-h-screen mr-5">
+        <Sidebar />
+        <div className="flex-1 p-4">
+          <h1 className="text-3xl font-bold mb-10 mt-10 text-center">Partners Management</h1>
+          <h2 className="text-2xl font-bold mb-5 ml-10 mt-10 text-center">Partnership Request</h2>
+          {/* Partnership Request Table */}
+          <div className="card mb-5">
+            <div className="container">
+              <table className="w-full table-auto text-white text-center driver mt-3 ml-10">
+                <thead className="bg-cyan-950">
+                  <tr>
+                    <th className="px-4 py-2 border-b font-semibold">Company Name</th>
+                    <th className="px-4 py-2 border-b font-semibold">Image</th>
+                    <th className="px-4 py-2 border-b font-semibold">Address</th>
+                    <th className="px-4 py-2 border-b font-semibold">Email</th>
+                    <th className="px-4 py-2 border-b font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {inactivePartner.length > 0 ? (
+                    inactivePartner.map((data) => (
+                      <tr key={data.id} className="border-b">
+                        <td className="text-black border-b font-medium">{data.name}</td>
+                        <td className="text-black border-b font-medium">
+                          <img
+                            className="h-16 w-16 object-contain"
+                            src={`data:image/jpeg;base64,${data?.profilePicture}`}
+                            alt=""
+                          />
+                        </td>
+                        <td className="text-black border-b font-medium">{data.address}</td>
+                        <td className="text-black border-b font-medium">{data.email}</td>
+                        <td className="text-black border-b font-medium">
+                          <button
+                            className="button font-bold text-green-500"
+                            onClick={() => handleAccept(data.id)}
+                          >
+                            Accept Partnership
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="text-black">
+                      <td colSpan="5" className="text-black border-b font-medium">
+                        No partnership requests found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold mb-5 mt-20 ml-10 text-center">Registered Partners</h2>
+          <div className="card mb-5">
+            <div className="container">
+              <table className="w-full table-auto text-white text-center driver mt-3 ml-10">
+                <thead className="bg-cyan-950">
+                  <tr>
+                    <th className="px-4 py-2 border-b font-semibold">Company Name</th>
+                    <th className="px-4 py-2 border-b font-semibold">Image</th>
+                    <th className="px-4 py-2 border-b font-semibold">Address</th>
+                    <th className="px-4 py-2 border-b font-semibold">Email</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white border-b">
+                  {partner.map((data) => (
+                    <tr key={data.id}>
+                      <td className="text-black border-b font-medium">{data.name}</td>
+                      <td className="text-black border-b font-medium">
+                        <img
+                          className="h-16 w-16 object-contain"
+                          src={`data:image/jpeg;base64,${data?.profilePicture}`}
+                          alt=""
+                        />
+                      </td>
+                      <td className="text-black border-b font-medium">{data.address}</td>
+                      <td className="text-black border-b font-medium">{data.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  </Layout>
+    </Layout>
   );
 };
 

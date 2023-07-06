@@ -209,9 +209,9 @@ const AdminDashboard = () => {
                 <table className="w-full table-auto text-white text-center driver mt-3">
                   <thead className="bg-cyan-950">
                     <tr>
-                      <th className="px-4 py-2 border-b font-normal">Name</th>
-                      <th className="px-4 py-2 border-b font-normal">Role</th>
-                      <th className="px-4 py-2 border-b font-normal">Action</th>
+                      <th className="px-4 py-2 border-b font-semibold">Name</th>
+                      <th className="px-4 py-2 border-b font-semibold">Role</th>
+                      <th className="px-4 py-2 border-b font-semibold">Action</th>
                     </tr>
                   </thead>
                   <tbody className="text-black bg-white">
@@ -267,18 +267,18 @@ const AdminDashboard = () => {
                 <table className="w-full table-auto text-white text-center driver mt-3">
                   <thead className="bg-cyan-950">
                     <tr>
-                      <th className="px-4 py-2 border-b font-normal">Name</th>
-                      <th className="px-4 py-2 border-b font-normal">Role</th>
-                      <th className="px-4 py-2 border-b font-normal">Assign Role</th>
+                      <th className="px-4 py-2 border-b font-semibold">Name</th>
+                      <th className="px-4 py-2 border-b font-semibold">Role</th>
+                      <th className="px-4 py-2 border-b font-semibold">Assign Role</th>
                     </tr>
                   </thead>
                   <tbody className="text-black bg-white">
                     {volunteers && volunteers.length > 0 ? (
                       volunteers.map((user) => (
                         <tr key={user.id}>
-                          <td className="text-black border-b">{user.name}</td>
-                          <td className="text-black border-b">{user.role}</td>
-                          <td className="text-black border-b">
+                          <td className="text-black border-b font-medium">{user.name}</td>
+                          <td className="text-black border-b font-medium">{user.role}</td>
+                          <td className="text-black border-b font-medium">
                             <div className="relative inline-block">
                               <button className="bg-blue-500 text-white py-1 px-3 rounded-md" onMouseEnter={() => handleOpen(user.id)}>
                                 Select
@@ -329,22 +329,21 @@ const AdminDashboard = () => {
                       <table className="w-full table-auto text-white text-center driver my-3 task-header">
                         <thead className="bg-cyan-950">
                           <tr>
-                            <th className="px-4 py-2 border-b font-normal">No</th>
-                            <th className="px-4 py-2 border-b font-normal">Meals Request List</th>
-                            <th className="px-4 py-2 border-b font-normal">Status</th>
-                            <th className="px-4 py-2 border-b font-normal">Assigned Partner</th>
-                            <th className="px-4 py-2 border-b font-normal">Select Partner</th>
+                            <th className="px-4 py-2 border-b font-semibold">No</th>
+                            <th className="px-4 py-2 border-b font-semibold">Meals Request List</th>
+                            <th className="px-4 py-2 border-b font-semibold">Status</th>
+                            <th className="px-4 py-2 border-b font-semibold">Assigned Partner</th>
+                            <th className="px-4 py-2 border-b font-semibold">Select Partner</th>
                           </tr>
                         </thead>
                         <tbody className="text-black mt-5 bg-white">
                           {orderList.map((order, index) => (
-
                             <tr key={order.id}>
-                              <td className="px-4 py-2 border-b">{index + 1}</td>
-                              <td className="px-4 py-2 border-b">
+                              <td className="px-4 py-2 border-b font-medium">{index + 1}</td>
+                              <td className="px-4 py-2 border-b font-medium">
                                 {order.mealPackage.packageName}
                               </td>
-                              <td className="px-4 py-2 border-b">
+                              <td className="px-4 py-2 border-b font-medium">
                                 <div className="status flex justify-center">
                                   <img src={redCircle} alt="" className="status-icon" />
                                   <span className="font-bold ms-3">
@@ -352,10 +351,10 @@ const AdminDashboard = () => {
                                   </span>
                                 </div>
                               </td>
-                              <td className="px-4 py-2 border-b">
+                              <td className="px-4 py-2 border-b font-medium">
                                 {order.preparedBy?.name}
                               </td>
-                              <td className="px-4 py-2 border-b">
+                              <td className="px-4 py-2 border-b font-medium">
                                 <div className="relative inline-block text-center">
                                   <div>
                                     <button

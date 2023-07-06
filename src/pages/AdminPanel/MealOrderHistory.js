@@ -15,7 +15,7 @@ const MealOrderHistory = () => {
   const [msg, setMsg] = useState("");
   const isAdmin = auth()?.role?.[0] === "ROLE_ADMIN";
 
-  
+
 
   useEffect(() => {
     getAdminOrderAllAPI(token)
@@ -38,42 +38,40 @@ const MealOrderHistory = () => {
           <Sidebar />
           <div className="flex-1 p-4">
             <h1 className="text-3xl font-bold mb-10 mt-10 text-center">Meal Order History</h1>
-            <h2 className="text-2xl font-bold mb-4 mt-10">Orders</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full border border-gray-300">
-                <thead className="bg-blue-800 text-white">
-                  <tr>
-                    <th className="px-4 py-2 font-medium">No</th>
-                    <th className="px-4 py-2 font-medium">Name</th>
-                    <th className="px-4 py-2 font-medium">Meal Package</th>
-                    <th className="px-4 py-2 font-medium">Delivery Address</th>
-                    <th className="px-4 py-2 font-medium">Order Date</th>
-                    <th className="px-4 py-2 font-medium">Prepared By</th>
-                    <th className="px-4 py-2 font-medium">Delivered By</th>
-                    <th className="px-4 py-2 font-medium">Status</th>
+            <h2 className="text-2xl font-bold mb-4 mt-10 text-center">Orders</h2>
+            <table className="w-full table-auto text-white text-center driver mt-3 mr-10 mx-auto">
+              <thead className="bg-cyan-950">
+                <tr>
+                  <th className="px-4 py-2 border-b font-semibold">No</th>
+                  <th className="px-4 py-2 border-b font-semibold">Name</th>
+                  <th className="px-4 py-2 border-b font-semibold">Meal Package</th>
+                  <th className="px-4 py-2 border-b font-semibold">Delivery Address</th>
+                  <th className="px-4 py-2 border-b font-semibold">Order Date</th>
+                  <th className="px-4 py-2 border-b font-semibold">Prepared By</th>
+                  <th className="px-4 py-2 border-b font-semibold">Delivered By</th>
+                  <th className="px-4 py-2 border-b font-semibold">Status</th>
+                </tr>
+              </thead>
+              <tbody className="text-center">
+                {order.map((x, i) => (
+                  <tr key={x.id}>
+                    <td className="text-black border-b font-medium">{i + 1}</td>
+                    <td className="text-black border-b font-medium">{x.orderBy.name}</td>
+                    <td className="text-black border-b font-medium">{x.mealPackage.packageName}</td>
+                    <td className="text-black border-b font-medium">{x.orderBy.address}</td>
+                    <td className="text-black border-b font-medium">
+                      {new Date(x.orderOn).toLocaleString("en-GB", {
+                        timeZone: "Asia/Singapore",
+                        hour12: true,
+                      })}
+                    </td>
+                    <td className="text-black border-b font-medium">{x.preparedBy?.name}</td>
+                    <td className="text-black border-b font-medium">{x.deliveredBy?.name}</td>
+                    <td className="text-black border-b font-medium">{x.orderStatus}</td>
                   </tr>
-                </thead>
-                <tbody className="text-center">
-                  {order.map((x, i) => (
-                    <tr key={x.id}>
-                      <td className="px-4 py-2">{i + 1}</td>
-                      <td className="px-4 py-2">{x.orderBy.name}</td>
-                      <td className="px-4 py-2">{x.mealPackage.packageName}</td>
-                      <td className="px-4 py-2">{x.orderBy.address}</td>
-                      <td className="px-4 py-2">
-                        {new Date(x.orderOn).toLocaleString("en-GB", {
-                          timeZone: "Asia/Singapore",
-                          hour12: true,
-                        })}
-                      </td>
-                      <td className="px-4 py-2">{x.preparedBy?.name}</td>
-                      <td className="px-4 py-2">{x.deliveredBy?.name}</td>
-                      <td className="px-4 py-2">{x.orderStatus}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
